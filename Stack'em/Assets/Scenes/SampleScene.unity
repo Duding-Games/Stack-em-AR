@@ -171,7 +171,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 50, y: 1, z: 50}
+  m_Size: {x: 50, y: 0.01, z: 50}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &24647857
 Transform:
@@ -182,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 24647854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2142,7 +2142,7 @@ Transform:
   m_GameObject: {fileID: 632559657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3060,8 +3060,8 @@ MonoBehaviour:
   blockPrefabs:
   - {fileID: 2824818041565164590, guid: affa34a6a3375c443977dbd2aae693d3, type: 3}
   spawnPoint: {fileID: 632559658}
-  spawnInterval: 2
-  spawnRange: 5
+  spawnInterval: 4
+  spawnRange: 0.5
   minGravity: 0.5
   maxGravity: 2
 --- !u!4 &819582696
@@ -5937,7 +5937,7 @@ MonoBehaviour:
   m_SerializedLibrary: {fileID: 11400000, guid: 4f4b0cb2a461a164489641adaf42964c,
     type: 2}
   m_MaxNumberOfMovingImages: 2
-  m_TrackedImagePrefab: {fileID: 2668992677333385299, guid: 98cdacc32bf0d8d469092762a7263c4b,
+  m_TrackedImagePrefab: {fileID: 2824818041565164590, guid: affa34a6a3375c443977dbd2aae693d3,
     type: 3}
 --- !u!1 &1441072524
 GameObject:
