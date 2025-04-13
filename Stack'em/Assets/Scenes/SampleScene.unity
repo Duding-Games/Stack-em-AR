@@ -3059,6 +3059,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefabs:
   - {fileID: 2824818041565164590, guid: affa34a6a3375c443977dbd2aae693d3, type: 3}
+  - {fileID: 5744005331227134218, guid: 2174f2fa20e38174a95735d19e0bcc8d, type: 3}
+  - {fileID: 5623536192238364776, guid: 314d10ce97575434597be1fd0ed5a1e3, type: 3}
+  - {fileID: 1442065162937897279, guid: 4517892390b1131448e686f200502016, type: 3}
+  - {fileID: 1135160391060663852, guid: abf515d86f168a74caa251c71cb47cee, type: 3}
+  - {fileID: 6407709019997163557, guid: 8990344f045fd96408d2c406811804e6, type: 3}
   spawnPoint: {fileID: 632559658}
   spawnInterval: 4
   spawnRange: 0.5
