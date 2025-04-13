@@ -17,18 +17,7 @@ using UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets;
 /// </summary>
 public class ARTemplateMenuManager : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("Button that opens the create menu.")]
-    Button m_CreateButton;
 
-    /// <summary>
-    /// Button that opens the create menu.
-    /// </summary>
-    public Button createButton
-    {
-        get => m_CreateButton;
-        set => m_CreateButton = value;
-    }
 
     [SerializeField]
     [Tooltip("Button that deletes a selected object.")]
@@ -225,7 +214,6 @@ public class ARTemplateMenuManager : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
-        m_CreateButton.onClick.AddListener(ShowMenu);
         m_CancelButton.onClick.AddListener(HideMenu);
         m_DeleteButton.onClick.AddListener(DeleteFocusedObject);
         m_PlaneManager.planesChanged += OnPlaneChanged;
@@ -237,7 +225,6 @@ public class ARTemplateMenuManager : MonoBehaviour
     void OnDisable()
     {
         m_ShowObjectMenu = false;
-        m_CreateButton.onClick.RemoveListener(ShowMenu);
         m_CancelButton.onClick.RemoveListener(HideMenu);
         m_DeleteButton.onClick.RemoveListener(DeleteFocusedObject);
         m_PlaneManager.planesChanged -= OnPlaneChanged;
@@ -253,7 +240,6 @@ public class ARTemplateMenuManager : MonoBehaviour
         m_DebugMenu.gameObject.SetActive(true);
         m_InitializingDebugMenu = true;
 
-        InitializeDebugMenuOffsets();
         HideMenu();
         m_PlaneManager.planePrefab = m_DebugPlane;
     }
@@ -294,8 +280,7 @@ public class ARTemplateMenuManager : MonoBehaviour
         else
         {
             m_IsPointerOverUI = false;
-            m_CreateButton.gameObject.SetActive(true);
-            m_DeleteButton.gameObject.SetActive(m_InteractionGroup?.focusInteractable != null);
+            //m_DeleteButton.gameObject.SetActive(m_InteractionGroup?.focusInteractable != null);
         }
 
         if (!m_IsPointerOverUI && m_ShowOptionsModal)
@@ -432,18 +417,6 @@ public class ARTemplateMenuManager : MonoBehaviour
         }
     }
 
-    void InitializeDebugMenuOffsets()
-    {
-        if (m_CreateButton.TryGetComponent<RectTransform>(out var buttonRect))
-            m_ObjectButtonOffset = new Vector2(0f, buttonRect.anchoredPosition.y + buttonRect.rect.height + 10f);
-        else
-            m_ObjectButtonOffset = new Vector2(0f, 200f);
-
-        if (m_ObjectMenu.TryGetComponent<RectTransform>(out var menuRect))
-            m_ObjectMenuOffset = new Vector2(0f, menuRect.anchoredPosition.y + menuRect.rect.height + 10f);
-        else
-            m_ObjectMenuOffset = new Vector2(0f, 345f);
-    }
 
     void AdjustARDebugMenuPosition()
     {
