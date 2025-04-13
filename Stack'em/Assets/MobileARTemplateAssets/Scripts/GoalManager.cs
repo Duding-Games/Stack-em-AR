@@ -100,11 +100,11 @@ public class GoalManager : MonoBehaviour
     /// <summary>
     /// List of Goals/Steps to complete as part of the user onboarding.
     /// </summary>
-    public List<Step> stepList
-    {
-        get => m_StepList;
-        set => m_StepList = value;
-    }
+    //public List<Step> stepList
+    //{
+    //    get => m_StepList;
+    //    set => m_StepList = value;
+    //}
 
     [Tooltip("Object Spawner used to detect whether the spawning goal has been achieved.")]
     [SerializeField]
@@ -147,29 +147,29 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("The Create Button to enable once the greeting prompt is dismissed.")]
     [SerializeField]
-    GameObject m_CreateButton;
+    //GameObject m_CreateButton;
 
     /// <summary>
     /// The Create Button to enable once the greeting prompt is dismissed.
     /// </summary>
-    public GameObject createButton
-    {
-        get => m_CreateButton;
-        set => m_CreateButton = value;
-    }
+    //public GameObject createButton
+    //{
+    //    get => m_CreateButton;
+    //    set => m_CreateButton = value;
+    //}
 
-    [Tooltip("The AR Template Menu Manager object to enable once the greeting prompt is dismissed.")]
-    [SerializeField]
-    ARTemplateMenuManager m_MenuManager;
+    //[Tooltip("The AR Template Menu Manager object to enable once the greeting prompt is dismissed.")]
+    //[SerializeField]
+    //ARTemplateMenuManager m_MenuManager;
 
     /// <summary>
     /// The AR Template Menu Manager object to enable once the greeting prompt is dismissed.
     /// </summary>
-    public ARTemplateMenuManager menuManager
-    {
-        get => m_MenuManager;
-        set => m_MenuManager = value;
-    }
+    //public ARTemplateMenuManager menuManager
+    //{
+    //    get => m_MenuManager;
+    //    set => m_MenuManager = value;
+    //}
 
     const int k_NumberOfSurfacesTappedToCompleteGoal = 1;
 
@@ -202,12 +202,12 @@ public class GoalManager : MonoBehaviour
         if (m_OnboardingGoals.Count > 0)
         {
             m_CurrentGoal = m_OnboardingGoals.Dequeue();
-            m_StepList[m_CurrentGoalIndex - 1].stepObject.SetActive(false);
-            m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
+            //m_StepList[m_CurrentGoalIndex - 1].stepObject.SetActive(false);
+            //m_StepList[m_CurrentGoalIndex].stepObject.SetActive(true);
         }
         else
         {
-            m_StepList[m_CurrentGoalIndex - 1].stepObject.SetActive(false);
+            //m_StepList[m_CurrentGoalIndex - 1].stepObject.SetActive(false);
             m_AllGoalsFinished = true;
             return;
         }
@@ -306,21 +306,21 @@ public class GoalManager : MonoBehaviour
 
         m_GreetingPrompt.SetActive(false);
         m_OptionsButton.SetActive(true);
-        m_CreateButton.SetActive(true);
-        m_MenuManager.enabled = true;
+        //m_CreateButton.SetActive(true);
+        //m_MenuManager.enabled = true;
 
-        for (int i = startingStep; i < m_StepList.Count; i++)
-        {
-            if (i == startingStep)
-            {
-                m_StepList[i].stepObject.SetActive(true);
-                PreprocessGoal();
-            }
-            else
-            {
-                m_StepList[i].stepObject.SetActive(false);
-            }
-        }
+        //for (int i = startingStep; i < m_StepList.Count; i++)
+        //{
+        //    if (i == startingStep)
+        //    {
+        //        m_StepList[i].stepObject.SetActive(true);
+        //        PreprocessGoal();
+        //    }
+        //    else
+        //    {
+        //        m_StepList[i].stepObject.SetActive(false);
+        //    }
+        //}
 
     }
 }
