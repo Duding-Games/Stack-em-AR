@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     private float timeRemaining;
     private bool gameActive = true;
 
-    public Text timerText;
+    public TextMeshProUGUI timerText;
 
     void Start()
     {
