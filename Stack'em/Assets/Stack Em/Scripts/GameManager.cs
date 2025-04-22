@@ -7,27 +7,39 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public float gameDuration = 60f;
+    public float tutorialDuration = 20f;
+    public float tutorialRemaining;
     private float timeRemaining;
     private bool gameActive = true;
 
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerTutorialText;
+    public GameObject UITutorial;
 
     void Start()
     {
         timeRemaining = gameDuration;
+        tutorialRemaining = tutorialDuration;
     }
 
     void Update()
     {
         if (gameActive)
         {
-            timeRemaining -= Time.deltaTime;
-            UpdateTimerUI();
-
-            if (timeRemaining <= 0)
+            tutorialRemaining -= Time.deltaTime;
+            UpdateTutorialUI();
+            if(tutorialRemaining <= 0)
             {
-                EndGame();
+                UITutorial.SetActive(false);
+                timeRemaining -= Time.deltaTime;
+                UpdateTimerUI();
+
+                if (timeRemaining <= 0)
+                {
+                    EndGame();
+                }
             }
+           
         }
     }
 
@@ -36,6 +48,14 @@ public class GameManager : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = "Time: " + Mathf.Ceil(timeRemaining).ToString();
+        }
+    }
+
+    void UpdateTutorialUI()
+    {
+        if(timerTutorialText != null)
+        {
+            timerTutorialText.text = "Tutorial Time: " + Mathf.Ceil(tutorialRemaining).ToString();
         }
     }
 
