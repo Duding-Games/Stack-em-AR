@@ -8,7 +8,8 @@ public class BlockSpawner : MonoBehaviour
     public Transform spawnPoint; // Punto donde aparecerán los bloques
     public float spawnInterval = 2f; // Tiempo entre spawns
     public float checkInterval = 0.1f; // Tiempo entre comprobaciones
-    public float spawnRange = 0.001f; // Rango de variación horizontal
+    public float spawnRangeX = 1; // Rango de variación horizontal
+    public float spawnRangeZ = 0.3f; // Rango de variación horizontal
     public float minGravity = 0.5f; // Gravedad mínima
     public float maxGravity = 2f; // Gravedad máxima
 
@@ -40,7 +41,7 @@ public class BlockSpawner : MonoBehaviour
         if (blockPrefabs.Length == 0) return;
 
         int index = Random.Range(0, blockPrefabs.Length);
-        Vector3 spawnPosition = spawnPoint.position + new Vector3(Random.Range(-spawnRange, spawnRange), 0, Random.Range(-spawnRange, spawnRange));
+        Vector3 spawnPosition = spawnPoint.position + new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, Random.Range(-spawnRangeZ, spawnRangeZ));
 
         GameObject newBlock = Instantiate(blockPrefabs[index], spawnPosition, Quaternion.identity);
         Rigidbody rb = newBlock.GetComponent<Rigidbody>();
