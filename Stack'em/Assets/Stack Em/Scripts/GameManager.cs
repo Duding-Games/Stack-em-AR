@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public float tutorialDuration = 20f;
     public float tutorialRemaining;
     private float timeRemaining;
-    private bool gameActive = false;
+    public bool gameActive = false;
 
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;

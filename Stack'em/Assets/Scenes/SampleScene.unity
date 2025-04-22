@@ -501,6 +501,7 @@ MonoBehaviour:
   gameDuration: 60
   tutorialDuration: 20
   tutorialRemaining: 0
+  gameActive: 0
   timerText: {fileID: 1829770070}
   timerTutorialText: {fileID: 106840198}
   UITutorial: {fileID: 106840196}
@@ -1441,9 +1442,11 @@ MonoBehaviour:
   - {fileID: 6407709019997163557, guid: 8990344f045fd96408d2c406811804e6, type: 3}
   spawnPoint: {fileID: 632559658}
   spawnInterval: 4
+  checkInterval: 0.1
   spawnRange: 0.5
   minGravity: 0.5
   maxGravity: 2
+  gayManager: {fileID: 304580558}
 --- !u!4 &819582696
 Transform:
   m_ObjectHideFlags: 0

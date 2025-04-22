@@ -17,6 +17,6 @@ public class TriggerAreaDetector : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Objetos dentro del área: " + (objectsInArea.Count - 1));
+        //Debug.Log("Objetos dentro del área: " + (objectsInArea.Count - 1));
     }
 }
