@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;
+    public TextMeshProUGUI ScoreText;
     public GameObject UITutorial;
     public GameObject Timer;
+    public GameObject Score;
 
     void Start()
     {
@@ -62,6 +64,11 @@ public class GameManager : MonoBehaviour
         {
             timerTutorialText.text = "Tutorial Time: " + Mathf.Ceil(tutorialRemaining).ToString();
         }
+    }
+
+    void UpdateScoreUI()
+    {
+        //blablabla blebleble blublublu
     }
 
     void EndGame()
