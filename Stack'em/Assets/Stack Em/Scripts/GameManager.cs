@@ -10,27 +10,32 @@ public class GameManager : MonoBehaviour
     public float tutorialDuration = 20f;
     public float tutorialRemaining;
     private float timeRemaining;
-    private bool gameActive = true;
+    private bool gameActive = false;
 
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;
     public GameObject UITutorial;
+    public GameObject Timer;
 
     void Start()
     {
         timeRemaining = gameDuration;
         tutorialRemaining = tutorialDuration;
+        UITutorial.SetActive(false);
+        Timer.SetActive(false);
     }
 
     void Update()
     {
         if (gameActive)
         {
+            UITutorial.SetActive(true);
             tutorialRemaining -= Time.deltaTime;
             UpdateTutorialUI();
             if(tutorialRemaining <= 0)
             {
                 UITutorial.SetActive(false);
+                Timer.SetActive(true);
                 timeRemaining -= Time.deltaTime;
                 UpdateTimerUI();
 
@@ -63,5 +68,11 @@ public class GameManager : MonoBehaviour
     {
         gameActive = false;
         Debug.Log("Game Over!");
+    }
+
+    public void ActivateGame()
+    {
+        gameActive = true;
+        Debug.Log("GAME IS NOW ACTIVE");
     }
 }
