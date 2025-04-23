@@ -12,7 +12,7 @@ public class SliderMovement : MonoBehaviour
     void Start()
     {
 
-        instancia = Instantiate(prefab, new Vector3(0, 0.45f, 0), Quaternion.identity);
+        instancia = Instantiate(prefab, new Vector3(0, 0.3f, 0), Quaternion.identity);
 
         rb = instancia.GetComponent<Rigidbody>();
 
