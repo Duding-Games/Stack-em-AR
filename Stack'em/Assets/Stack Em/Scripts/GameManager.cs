@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public float tutorialRemaining;
     private float timeRemaining;
     public bool gameActive = false;
+    private bool gamePlayed = false;
+    private int points;
 
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;
@@ -25,21 +27,25 @@ public class GameManager : MonoBehaviour
         tutorialRemaining = tutorialDuration;
         UITutorial.SetActive(false);
         Timer.SetActive(false);
+        Score.SetActive(false);
     }
 
     void Update()
     {
-        if (gameActive)
+        if (gamePlayed)
         {
-            UITutorial.SetActive(true);
             tutorialRemaining -= Time.deltaTime;
             UpdateTutorialUI();
             if(tutorialRemaining <= 0)
             {
-                UITutorial.SetActive(false);
-                Timer.SetActive(true);
+                if (!gameActive) ActivateGame();
+
                 timeRemaining -= Time.deltaTime;
                 UpdateTimerUI();
+
+                points = PlayerPrefs.GetInt("ObjectsInArea", 0);
+                Debug.Log(points);
+                UpdateScoreUI();
 
                 if (timeRemaining <= 0)
                 {
@@ -68,18 +74,34 @@ public class GameManager : MonoBehaviour
 
     void UpdateScoreUI()
     {
-        //blablabla blebleble blublublu
+        if (Score != null)
+        {
+            ScoreText.text = Mathf.Ceil(points).ToString();
+        }
     }
 
     void EndGame()
     {
+        Timer.SetActive(false);
+
         gameActive = false;
         Debug.Log("Game Over!");
     }
 
     public void ActivateGame()
     {
+        UITutorial.SetActive(false);
+        Timer.SetActive(true);
+        Score.SetActive(true);
+
         gameActive = true;
-        Debug.Log("GAME IS NOW ACTIVE");
+        Debug.Log("Game is now active");
+    }
+
+    public void PlayGame()
+    {
+        UITutorial.SetActive(true);
+
+        gamePlayed = true;
     }
 }

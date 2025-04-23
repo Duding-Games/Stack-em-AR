@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class TriggerAreaDetector : MonoBehaviour
 {
+    public static TriggerAreaDetector Instance { get; private set; }
+
     private HashSet<GameObject> objectsInArea = new HashSet<GameObject>();
 
     void OnTriggerEnter(Collider other)
@@ -17,6 +19,13 @@ public class TriggerAreaDetector : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Objetos dentro del área: " + (objectsInArea.Count - 1));
+        PlayerPrefs.SetInt("ObjectsInArea", objectsInArea.Count);
+        PlayerPrefs.Save();
+        //Debug.Log("Objetos dentro del área: " + objectsInArea.Count);
+    }
+
+    public int ObjectsInArea()
+    {
+        return objectsInArea.Count;
     }
 }

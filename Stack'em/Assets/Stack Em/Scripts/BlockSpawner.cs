@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class BlockSpawner : MonoBehaviour
 {
-    public GameObject[] blockPrefabs; // Array de bloques prefabricados
-    public Transform spawnPoint; // Punto donde aparecerán los bloques
-    public float spawnInterval = 2f; // Tiempo entre spawns
-    public float checkInterval = 0.1f; // Tiempo entre comprobaciones
-    public float spawnRangeX = 1; // Rango de variación horizontal
-    public float spawnRangeZ = 0.3f; // Rango de variación horizontal
-    public float minGravity = 0.5f; // Gravedad mínima
-    public float maxGravity = 2f; // Gravedad máxima
+    public GameObject[] blockPrefabs;
+    public Transform spawnPoint;
+    public float spawnInterval = 2f;
+    public float checkInterval = 0.1f;
+    public float spawnRangeX = 1;
+    public float spawnRangeZ = 0.3f;
 
     public GameManager gayManager;
 
@@ -22,13 +20,11 @@ public class BlockSpawner : MonoBehaviour
 
     IEnumerator SpawnBlocks()
     {
-        // Esperar hasta que el juego esté activo
         while (!gayManager.gameActive)
         {
             yield return new WaitForSeconds(checkInterval);
         }
 
-        // Una vez que el juego esté activo, empezar a spawnear bloques
         while (true)
         {
             SpawnBlock();
@@ -45,10 +41,5 @@ public class BlockSpawner : MonoBehaviour
 
         GameObject newBlock = Instantiate(blockPrefabs[index], spawnPosition, Quaternion.identity);
         Rigidbody rb = newBlock.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            // Puedes descomentar estas líneas si quieres asignar masa aleatoria
-            // rb.mass = Random.Range(minGravity, maxGravity);
-        }
     }
 }
