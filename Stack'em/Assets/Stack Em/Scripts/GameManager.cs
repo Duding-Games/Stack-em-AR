@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject Score;
     public GameObject HighScore;
 
+    public AudioSource endGameAudioSource; // Añade esto
+
     void Start()
     {
         highScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -42,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             tutorialRemaining -= Time.deltaTime;
             UpdateTutorialUI();
-            if(tutorialRemaining <= 0)
+            if (tutorialRemaining <= 0)
             {
                 if (!gameActive) ActivateGame();
 
@@ -50,17 +52,17 @@ public class GameManager : MonoBehaviour
                 UpdateTimerUI();
 
                 points = PlayerPrefs.GetInt("ObjectsInArea", 0);
-               
+
                 Debug.Log(points);
                 UpdateScoreUI();
                 UpdateHighScoreUI();
 
                 if (timeRemaining <= 0)
                 {
+                    endGameAudioSource.Play();
                     EndGame();
                 }
             }
-           
         }
     }
 
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTutorialUI()
     {
-        if(timerTutorialText != null)
+        if (timerTutorialText != null)
         {
             timerTutorialText.text = "Tutorial Time: " + Mathf.Ceil(tutorialRemaining).ToString();
         }
@@ -96,7 +98,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     void EndGame()
     {
         Timer.SetActive(false);
@@ -106,9 +107,17 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
             PlayerPrefs.Save();
         }
+
         UpdateScoreUI();
         gameActive = false;
         Debug.Log("Game Over!");
+
+        StartCoroutine(WaitAndLoadScene());
+    }
+
+    IEnumerator WaitAndLoadScene()
+    {
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("SampleScene");
     }
 
@@ -126,7 +135,6 @@ public class GameManager : MonoBehaviour
     public void PlayGame()
     {
         UITutorial.SetActive(true);
-
         gamePlayed = true;
     }
 }
