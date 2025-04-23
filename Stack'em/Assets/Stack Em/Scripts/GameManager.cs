@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,9 +19,11 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
     public GameObject UITutorial;
     public GameObject Timer;
     public GameObject Score;
+    public GameObject HighScore;
 
     void Start()
     {
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
         UITutorial.SetActive(false);
         Timer.SetActive(false);
         Score.SetActive(false);
+        HighScore.SetActive(false);
     }
 
     void Update()
@@ -46,14 +50,10 @@ public class GameManager : MonoBehaviour
                 UpdateTimerUI();
 
                 points = PlayerPrefs.GetInt("ObjectsInArea", 0);
-                if (points > highScore)
-                {
-                    highScore = points;
-                    PlayerPrefs.SetInt("HighScore", highScore);
-                    PlayerPrefs.Save();
-                }
+               
                 Debug.Log(points);
                 UpdateScoreUI();
+                UpdateHighScoreUI();
 
                 if (timeRemaining <= 0)
                 {
@@ -88,12 +88,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void UpdateHighScoreUI()
+    {
+        if (HighScore != null)
+        {
+            HighScoreText.text = "HighScore: " + Mathf.Ceil(highScore).ToString();
+        }
+    }
+
+
     void EndGame()
     {
         Timer.SetActive(false);
-
+        if (points > highScore)
+        {
+            highScore = points;
+            PlayerPrefs.SetInt("HighScore", highScore);
+            PlayerPrefs.Save();
+        }
+        UpdateScoreUI();
         gameActive = false;
         Debug.Log("Game Over!");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void ActivateGame()
@@ -101,6 +117,7 @@ public class GameManager : MonoBehaviour
         UITutorial.SetActive(false);
         Timer.SetActive(true);
         Score.SetActive(true);
+        HighScore.SetActive(true);
 
         gameActive = true;
         Debug.Log("Game is now active");
