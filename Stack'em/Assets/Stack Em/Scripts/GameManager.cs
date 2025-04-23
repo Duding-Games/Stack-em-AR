@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public bool gameActive = false;
     private bool gamePlayed = false;
     private int points;
+    private int highScore;
 
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI timerTutorialText;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
         timeRemaining = gameDuration;
         tutorialRemaining = tutorialDuration;
         UITutorial.SetActive(false);
@@ -44,6 +46,12 @@ public class GameManager : MonoBehaviour
                 UpdateTimerUI();
 
                 points = PlayerPrefs.GetInt("ObjectsInArea", 0);
+                if (points > highScore)
+                {
+                    highScore = points;
+                    PlayerPrefs.SetInt("HighScore", highScore);
+                    PlayerPrefs.Save();
+                }
                 Debug.Log(points);
                 UpdateScoreUI();
 
